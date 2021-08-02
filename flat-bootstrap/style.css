@@ -1,0 +1,614 @@
+/*
+Theme Name: Flat Bootstrap
+Theme URI: http://xtremelysocial.com/wordpress/flat/
+Author: XtremelySocial
+Author URI: http://xtremelysocial.com
+Description: Flat Bootstrap by XtremelySocial is a modern, fully responsive, "flat" style theme with a nice color palette, big full-width images, and full-width colored sections. It automatically adapts for desktops, tablets, and phones. It is based on the WordPress standard starter theme (_S) and the Twitter Bootstrap CSS framework. Features include a mobile navigation bar, multiple columns (grid), buttons, icons, labels, badges, tabbed content areas, collapsible content areas, progress bars, alert boxes, carousels (sliders) and much, much more. This is a theme for both users and theme developers with lots of features but without the bloat. For a live demo go to http://xtremelysocial.com/wordpress/flat/. PLEASE NOTE: Version 1.9 has had a major "spring cleaning" of the functions, templates, and CSS. Please be sure to test it out on your site.
+Version: 1.9
+License: GNU General Public License
+License URI: http://www.opensource.org/licenses/GPL-3.0
+Text Domain: flat-bootstrap
+Domain Path: /languages/
+Tags: one-column, right-sidebar, left-sidebar, fluid-layout, responsive-layout, custom-header, custom-menu, featured-images, featured-image-header, full-width-template, flexible-header, theme-options, sticky-post, threaded-comments, light, translation-ready, rtl-language-support, custom-background
+
+Flat Bootstrap WordPress theme, Copyright (C) 2014 XtremelySocial
+Flat Bootstrap WordPress theme is licensed under the GPL.
+See readme.txt file for license information on components used in this theme.
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Typography
+# Elements
+# Forms and Buttons
+# Navigation
+	## Links
+	## Menus
+# Content
+	## Header
+	## Footer
+	## Posts and pages
+	## Comments
+# Media
+	## Captions and Galleries
+# Widgets & Plugins
+	## Widgets
+	## Plugins
+
+--------------------------------------------------------------*/
+
+/*
+ * Note that most styles are handled already in our custom bootstrap.css, theme-base.css,
+ * and theme-flat.css files.
+ *
+ * We have put comments next to some of the styles to show what our custom bootstrap.css
+ * defaults to in case we (or anyone) wants to put these into custom bootstrap.css
+ * instead.
+ */
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+/*
+ * The cool thing about Lato and Raleway fonts is that they look great at light (300) and
+ * regular (500) font weight. So we only use bold (700) sparingly.
+ */
+body {
+	font-family: "Lato", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300; /*Bootstrap is 500;*/
+    font-size: 18px; /*BS is 16px;*/
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: "Raleway", Arial, "Helvetica Neue", sans-serif; /*"Helvetica Neue", Helvetica, Arial, sans-serif;*/
+}
+
+/* Lighten the h1-h3 headings so you can use <b> tags to have certain words stand out */
+h1,
+h2,
+h3 {
+    font-weight: 300; /*BS is 500 for h1-h6, including .h1-.h6*/
+}
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+
+/* Increase font size on article "lead" (usually for an "intro" paragraph */
+.lead {
+	font-size: 22px; /*18px, but goes to 24px @768 browser width */
+}
+
+/* Style code tag like pre tag */
+code {
+    /*color: #2f2f2f;
+    background-color: #f5f5f5; Moved to bootstrap.css*/
+	border: 1px solid #ccc;
+}
+
+/* Remove a bit of margin since Bootstrap h1-h3 tags already have 22px top margin */
+ hr {
+    margin: 16px 0; /*22px 0;*/
+}
+
+/*
+ * Override margins on jumbotron in case someone uses it like a colored "section" from
+ * this theme. Note: Moved here from theme-base.css.
+ */
+.jumbotron {
+	margin-bottom: 0;
+}
+
+/*
+ * Set block quote footer (author) to larger font size. BS quote is 20px, but footer
+ * is only 14px for some reason.
+ */
+blockquote footer {
+	font-size: 18px;
+}
+
+/* Color the collapsible panel hover color to match the link hover color */
+.panel-title>a:hover,
+.panel-title>small:hover,
+.panel-title>.small:hover,
+.panel-title>small>a:hover,
+.panel-title>.small>a:hover {
+	color: #19b798;
+}
+
+/*--------------------------------------------------------------
+# Forms and Buttons
+--------------------------------------------------------------*/
+
+/* Tone down field labels on forms, comments section, etc. */
+label {
+	font-weight: 300;
+}
+
+/* Match the default font color */
+.form-control {
+	color: #555;
+}
+
+/*
+ * Generically set input buttons to look like Bootstrap, but set colors below that to make
+ * it easier for users to override. Match Bootstrap btn-primary styles.
+ */
+button,
+html input[type="button"],
+input[type="submit"] {
+    background-image: none;
+	font-size: 16px;
+	line-height: 22px;
+	padding: 6px 12px;
+    border: none;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+    outline: 0;
+}
+button:hover,
+button:focus,
+html input[type="button"]:hover,
+html input[type="button"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    outline: 0;
+}
+
+/* Set colors for input buttons (Search, Reply). Change these in your child theme. */
+button,
+html input[type="button"],
+input[type="submit"] {
+    color: #fff;
+    background-color: #1abc9c;
+    border-color: #1abc9c;
+}
+button:hover,
+button:focus,
+html input[type="button"]:hover,
+html input[type="button"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    color: #fff;
+    background-color: #16a085;
+    border-color: #16a085;
+}
+
+/* Bootstrap uses "active" style on the <li>, but WordPress paginate_links() uses
+ * "current" in a <span> tag on the link. Also set the hover to match the primary button
+ * color.
+ */
+.pagination>li>a,
+.pagination>li>span,
+span.page-numbers.current {
+	color: #16a085;
+}
+.pagination>li>a:hover,
+.pagination>li>span:hover,
+.pagination>li>a:focus,
+.pagination>li>span:focus,
+span.page-numbers.current {
+	z-index: 2;
+	color: #fff;
+    background-color: #16a085;
+    border-color: #16a085;
+}
+
+/* Force search field to not be rounded on iOS devices */
+input.search-field {
+	-webkit-appearance: none !important;
+	-webkit-border-radius: 0 !important;
+	-moz-border-radius: 0 !important;
+	border-radius: 0 !important;
+}
+
+/*--------------------------------------------------------------
+# Navigation
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Links
+--------------------------------------------------------------*/
+
+/*
+ * Generically style the links here. Set colors below to make it easier for users to
+ * override.
+ */
+a {
+    word-wrap: break-word;
+
+    -webkit-transition: color .1s ease-in, background .1s ease-in;
+    -moz-transition: color .1s ease-in, background .1s ease-in;
+    -ms-transition: color .1s ease-in, background .1s ease-in;
+    -o-transition: color .1s ease-in, background .1s ease-in;
+    transition: color .1s ease-in, background .1s ease-in;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: 0;
+}
+a:before,
+a:after,
+a:hover i:before,
+a:focus i:before {
+    -webkit-transition: color .1s ease-in, background .1s ease-in;
+    -moz-transition: color .1s ease-in, background .1s ease-in;
+    -ms-transition: color .1s ease-in, background .1s ease-in;
+    -o-transition: color .1s ease-in, background .1s ease-in;
+    transition: color .1s ease-in, background .1s ease-in;
+}
+
+/*--------------------------------------------------------------
+## Menus
+--------------------------------------------------------------*/
+
+/* Since we lightened the body font, make the site title regular font weight */
+.navbar-brand {
+	font-weight: 500;
+	/*height: 50px; BS already 50px*/ /* Fixes layout if nav bar wraps before collapsing for mobile */
+}
+
+/*
+ * Line up the navbar with the header and page content (it's in a container, but not a
+ * row)
+ */
+div.navbar-collapse.collapse {
+	margin-left: -15px;
+	margin-right: -15px;
+}
+
+/* Since we lightened the body font, increase font weight on active tab */
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus {
+	color: inherit;
+	font-weight: 500;
+}
+
+/*--------------------------------------------------------------
+# Content
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+## Header
+--------------------------------------------------------------*/
+
+/* Set content (page title) header to midnight blue */
+.content-header {
+	background-color: #34495e;
+	color: #fff;
+}
+.content-header h1,
+.content-header h2,
+.content-header h3 {
+	color: #fff;
+}
+
+/*--------------------------------------------------------------
+## Footer
+--------------------------------------------------------------*/
+
+/* Set our footer to "almost" black */
+.sidebar-footer {
+	background-color: #2f2f2f;
+	color: white;
+}
+
+.sidebar-footer h1,
+.sidebar-footer h2,
+.sidebar-footer h3 {
+	color: #fff;
+}
+
+/* Set our "after footer" (footer nav menu and site credits) to "not quite" black */
+.after-footer {
+	background: #222222;
+	color: white;
+	font-size: 16px;
+}
+
+/* Set link colors to off white and text to gray for footer and after footer */
+.sidebar-footer,
+/*.after-footer {*/
+.footer-nav-menu {
+	color: #95a5a6;
+}
+.sidebar-footer a:not(.btn),
+.footer-nav-menu a:not(.btn) {
+/*.after-footer a:not(.btn) {*/
+	color: #f2f2f2;
+}
+.sidebar-footer a:hover:not(.btn),
+.sidebar-footer a:focus:not(.btn),
+.footer-nav-menu a:hover:not(.btn),
+.footer-nav-menu a:focus:not(.btn) {
+/*.after-footer a:hover:not(.btn),
+.after-footer a:focus:not(.btn) {*/
+	color: #3bc492;
+}
+
+/*--------------------------------------------------------------
+## Posts and pages
+--------------------------------------------------------------*/
+
+/* Reduce the size of post entry meta (date, author) */
+.entry-meta {
+	font-size: 16px;
+}
+
+/* Color "sticky" (featured) posts */
+.sticky .entry-title:after {
+	background-color: #1abc9c;
+	color: #fff;
+}
+
+/*--------------------------------------------------------------
+## Comments
+--------------------------------------------------------------*/
+
+/* Reduce the size of comment edit link */
+.comment-edit-link {
+	font-size: 16px;
+}
+
+/*--------------------------------------------------------------
+# Media
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+## Captions and Galleries
+--------------------------------------------------------------*/
+
+/* Color and style the Bootstrap carousel captions */
+.carousel-caption,
+.carousel-caption h4,
+.carousel-caption p {
+	font-weight: bold;
+}
+.carousel-caption {
+	text-shadow: none;
+	background-color: #16a085;
+	color: #fff;
+	opacity: .75;
+	font-weight: bold;
+}
+.carousel-caption a {
+	color: #fff;
+	text-decoration: underline;
+}
+.carousel-caption a:hover,
+.carousel-caption a:focus {
+    color: #bdc3c7; /*silver*/
+}
+
+/*--------------------------------------------------------------
+# Widgets and Plugins
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+## Widgets
+--------------------------------------------------------------*/
+
+/* Get Jetpack Popular Posts Widget to look like other thumbnail posts */
+.widgets-list-layout-links {
+	float: left !important;
+	margin-left: 15px !important;
+	/*margin-left: 1.625em !important;*/
+}
+
+/*--------------------------------------------------------------
+## Plugins
+--------------------------------------------------------------*/
+
+/* Format Jetpack contact form with Bootstrap's form-control tag. */
+form.contact-form input[type='text'],
+form.contact-form input[type='email'],
+form.contact-form textarea {
+    display: block;
+    width: 98%;
+    height: 36px;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.428571429;
+    color: #a1a1a1;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+form.contact-form input[type='text']:focus,
+form.contact-form input[type='email']:focus,
+form.contact-form textarea:focus {
+    color: #555;
+}
+.spacer {
+    margin-top: 40px;
+}
+p > label {
+ text-align: left;
+ font-size: 20px !important;
+}
+#acf-wlasne_oznakowanie_projektu {
+	display: none;
+}
+p.doschowania {
+	display: none;
+}
+
+
+
+/* drukowanie */
+@media print {
+	.acf_postbox .field input[type="text"], .acf_postbox .field input[type="number"], .acf_postbox .field input[type="password"], .acf_postbox .field input[type="email"], .acf_postbox .field textarea {
+	    border: none !important;
+	}
+	#masthead {
+		display: none;
+	}
+	#secondary {
+		display: none;
+	}
+	#colophon {
+		display: none;
+	}
+	.panelopcji {
+		display: none;
+	}
+	.schowanedodruku {
+		display: none;
+	}
+}
+
+/* END drukowanie */
+
+#main-grid {
+	min-height: 500px;
+}
+#theme-my-login > p.error {
+	display: none;
+}
+#your-profile > table:nth-child(5) > tbody > tr {
+	display: none;
+}
+#your-profile > table:nth-child(9) > tbody > tr.tml-user-contact-method-aim-wrap {
+	display: none;
+}
+#your-profile > table:nth-child(9) > tbody > tr.tml-user-contact-method-yim-wrap {
+	display: none;
+}
+#your-profile > table:nth-child(9) > tbody > tr.tml-user-contact-method-jabber-wrap {
+	display: none;
+}
+#your-profile > table:nth-child(7) > tbody > tr.tml-nickname-wrap {
+	display: none;
+}
+#your-profile > table:nth-child(7) > tbody > tr.tml-display-name-wrap {
+	display: none;
+}
+#your-profile > table:nth-child(9) > tbody > tr.tml-user-url-wrap {
+	display: none;
+}
+
+#acf-numer_sesji {
+	width: 200px;
+}
+#acf-czas_trwania_sesji {
+	width: 200px;
+}
+#acf-data_sesji {
+	width: 200px;
+}
+#ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > div > select.ui-datepicker-month {
+	color: black;
+}
+#ui-datepicker-div > div.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all > div > select.ui-datepicker-year {
+	color: black;
+}
+
+/* fonty wielkosc */
+#content > header > div > h1 {
+	font-size: 25px;
+	margin-top: 0px;
+}
+#content > header {
+	height: 70px;
+	min-height: 70px;
+}
+#primary {
+	padding-top: 0px;
+}
+body {
+	font-size: 16px !important;
+	font-weight: 400;
+}
+h4 {
+	font-weight: 600 !important;
+}
+.schowanedodruku {
+	margin-top: 7px;
+	margin-left: -14px;
+}
+button, html input[type="button"], input[type="submit"] {
+	border-radius: 0px !important;
+}
+h4 {
+font-family: "Raleway", Arial, "Helvetica Neue", sans-serif;
+font-size: 18px !important;
+font-weight: 200 !important;
+}
+.btn {
+	font-family: "Raleway", Arial, "Helvetica Neue", sans-serif !important;
+	font-size: 28px;
+}
+.btn-info {
+	font-family: "Raleway", Arial, "Helvetica Neue", sans-serif !important;
+	background-color: #34495e !important;
+}
+blockquote {
+	margin: 0 0 22px;
+	font-size: 20px;
+	padding: 0 !important;
+	border-left: 5px solid #16a085;
+	margin-bottom: 30px !important;
+	padding-left: 20px !important;
+}
+#site-branding > div > div > h1 > a {
+	font-size: 20px;
+}
+.acf_postbox p.label label {
+		font-family: "Raleway", Arial, "Helvetica Neue", sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 200 !important;
+}
+span.opisy1 {
+	font-family: "Lato", "Helvetica Neue", Arial, sans-serif;font-weight: 300; font-size: 16px !important;
+}
+.ladnaczcionka {
+	font-family: "Raleway", Arial, "Helvetica Neue", sans-serif !important;
+	font-size: 18px !important;
+	font-weight: 200 !important;
+}
+.ramkasesja {
+	border: 1px solid #B1B1B1;
+  padding: 20px
+}
+
+/* komentarze i pliki marzec */
+#comments > h2 {
+	display: none;
+}
+div.comment-author.vcard > img {
+	display: none;
+}
+div.comment-content > p {
+	font-size: 20px;
+}
+div.comment-metadata > a > time {
+	font-size: 12px;
+}
+.media-menu > a:nth-child(2) {
+	display: none;
+}
+span.edit-link {
+ display: none; 
+}
+
+#acf-czaspracynadprojektem {
+    display: none;
+}
+#acf-ilość_odbytych_sesji {
+    display: none;
+}
